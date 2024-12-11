@@ -517,7 +517,7 @@ def question_33():
 def question_34():
     global C
     print("\n34. 표정에 감정을 잘 드러내지 않는 편입니까?")
-    answer = 1
+    answer = int(input('답변: '))
     
     if answer == 1:
         C+=1
