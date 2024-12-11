@@ -6,20 +6,26 @@ A = 0
 B = 0
 C = 0
 D = 0
+
 result = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-lever = 0
+
+df_lever = 0
+af_lever = 0
 
 def program_start():
+    global af_lever, A, B, C, D
     print("버그가 있을 경우 jkw0527@gachon.ac.kr로 연락 부탁드립니다.")
     print("애착 성향 진단 테스트를 시작하려면 1, 이미 테스트했던 점수를 가지고 결과를 보고싶으시다면 2를 입력해주세요.")
     answer = int(input('답변: '))
     if answer == 1:
         test_start()
     elif answer == 2:
-        af.already_test(A, B, C, D)
+        af_lever, A, B, C, D = af.already_test()
+
     else:
         print("잘못된 답변입니다.\n")
         program_start()
+
 
 def test_start():
     print("설문을 제외한 대답은 Yes일 경우 1을 입력하시고 No일 경우 2를 입력해주시면 됩니다.")
@@ -52,10 +58,11 @@ def exit():
 
 
 program_start() # 전체 설문조사 실행 or 이미 테스트 했던 점수 기반으로 결과 재확인
-A, B, C, D = tf.question_45()
+if af_lever == 0:
+    A, B, C, D = tf.question_45()
 
 df.diagnosis_run(A, B, C, D, result) # 진단 함수들 실행
-df.result_print(lever, result) # 진단한 애착유형을 알려줌
+df.result_print(df_lever, result) # 진단한 애착유형을 알려줌
 
 df.primary_attachment(A, B, C, D) # 오름차순으로 정렬한 num_sorted를 기반으로 주된 애착형과 부차적인 애착형을 알려줌
 df.num_print() # 각각의 애착형 점수를 알려줌
